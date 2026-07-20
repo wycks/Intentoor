@@ -8,7 +8,6 @@ Built for low latency: a Go ingestor polls venue APIs, a Rust engine maintains a
 ## TUI
 
 ![Intent Market TUI dashboard](example.jpg)
-<br>
 
 ## Architecture
 
