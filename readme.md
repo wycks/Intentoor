@@ -5,8 +5,10 @@ Real-time monitoring pipeline for off-chain signed orders ("intents") from Cow S
 Built for low latency: a Go ingestor polls venue APIs, a Rust engine maintains an in-memory active orderbook with TTL expiry, and a Ratatui dashboard visualizes live state — all connected over ZeroMQ with minimal overhead.
 <br><br>
 
+##TUI
+
 ![Intent Market TUI dashboard](example.jpg)
-<br><br>
+<br>
 
 ## Architecture
 
