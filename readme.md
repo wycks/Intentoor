@@ -1,4 +1,4 @@
-# Intent Market
+# Cow Swap and UniswapX Intent Monitor and Logging
 
 Real-time monitoring pipeline for off-chain signed orders ("intents") from Cow Swap and UniswapX.
 
@@ -10,7 +10,7 @@ Built for low latency: a Go ingestor polls venue APIs, a Rust engine maintains a
 
 ## Architecture
 
-Three modular services communicating over ZeroMQ:
+Three modular services communicating over ZeroMQ, they are seperate process's for a reason.
 
 | Service | Language | Role |
 |---------|----------|------|
@@ -51,7 +51,7 @@ In a **separate terminal**, launch the TUI with an interactive terminal:
 docker compose run --rm tui
 ```
 
-> `docker compose run` attaches a real TTY so the Ratatui dashboard renders properly. Press **`q`** to quit the TUI (backends keep running). Alternatively, run everything together with `docker compose --profile tui up --build`, but the TUI output will be mixed into the compose log stream.
+> `docker compose run` attaches a real TTY so the Ratatui dashboard renders properly. Press **`q`** to quit the TUI (backends keep running). 
 
 ### Native (Mac)
 
@@ -139,5 +139,5 @@ Legend: `[ ]` not started, `[~]` in progress, `[x]` done
 ## Notes
 
 - TCP is the default ZeroMQ transport (works in Docker and on Mac).
-- Message schema is in `shared/intent.schema.json` and will evolve as we learn real payloads.
-- Development machine is Windows, but we do not run ZeroMQ native on Windows — Docker is used instead.
+- Message schema is in `shared/intent.schema.json` and will evolve.
+- Development machine is Windows, ZeroMQ does not run native on Windows — Thus Docker.
