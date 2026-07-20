@@ -1,0 +1,46 @@
+services:
+  ingestor:
+    build:
+      context: .
+      dockerfile: docker/ingestor.Dockerfile
+    command:
+      [
+        "--bind",
+        "tcp://0.0.0.0:5555",
+        "--poll-interval",
+        "3s",
+        "--out",
+        "/app/out",
+      ]
+    ports:
+      - "5555:5555"
+    volumes:
+      - ./out/ingestor:/app/out
+
+  engine:
+    build:
+      context: ./engine
+      dockerfile: Dockerfile
+    environment:
+      INGESTOR_SUB: tcp://ingestor:5555
+      ENGINE_PUB_BIND: tcp://0.0.0.0:5556
+      DEFAULT_INTENT_TTL_SECONDS: "30"
+    depends_on:
+      - ingestor
+    ports:
+      - "5556:5556"
+    restart: unless-stopped
+
+    command: ["/app/engine"]
+  tui:
+    profiles: ["tui"]
+    build:
+      context: ./engine
+      dockerfile: Dockerfile
+    command: ["/app/tui"]
+    environment:
+      ENGINE_SUB: tcp://engine:5556
+    depends_on:
+      - engine
+    tty: true
+    stdin_open: true

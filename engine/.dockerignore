@@ -1,0 +1,12 @@
+target
+\*\*/target
+
+.git
+\*\*/.git
+
+\*_/_.rs.bk
+
+.vscode
+**/.idea
+**/_.log
+\*\*/_.tmp

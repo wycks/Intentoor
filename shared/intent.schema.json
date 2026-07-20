@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://intent.market/schemas/intent-envelope.schema.json",
+  "title": "IntentEnvelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "emitted_at", "source", "raw"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Version of this envelope schema.",
+      "examples": ["0.1.0"]
+    },
+    "emitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC3339 timestamp when the ingestor emitted this envelope."
+    },
+    "source": {
+      "type": "string",
+      "description": "Venue/provider name.",
+      "examples": ["uniswapx", "cowswap"]
+    },
+    "network": {
+      "type": "string",
+      "description": "Network context if known.",
+      "examples": ["ethereum-mainnet"]
+    },
+    "transport_hint": {
+      "type": "string",
+      "description": "Optional: how the message was transported/published.",
+      "examples": ["zmq:pub"]
+    },
+    "id": {
+      "type": "string",
+      "description": "Best-effort canonical ID for deduplication (venue UID/order hash). May be empty until we confirm venue fields."
+    },
+    "normalized": {
+      "type": "object",
+      "description": "Best-effort normalized fields used by the engine/TUI. This will evolve.",
+      "additionalProperties": true,
+      "properties": {
+        "sell_token": { "type": "string" },
+        "buy_token": { "type": "string" },
+        "sell_amount": { "type": "string", "description": "Integer string (raw base units)" },
+        "min_buy_amount": { "type": "string", "description": "Integer string (raw base units)" },
+        "deadline_unix": { "type": "integer", "description": "Unix timestamp (seconds)" },
+        "signature": { "type": "object", "additionalProperties": true }
+      }
+    },
+    "raw": {
+      "type": ["object", "array"],
+      "description": "Raw JSON payload from the venue (or a subset) as received by the ingestor.",
+      "additionalProperties": true
+    },
+    "meta": {
+      "type": "object",
+      "description": "Operational metadata (HTTP status, polling window, etc).",
+      "additionalProperties": true
+    }
+  }
+}

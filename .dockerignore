@@ -1,0 +1,20 @@
+.git
+.github
+.vscode
+\*\*/.DS_Store
+
+# build outputs
+
+out
+**/out
+engine/target
+**/target
+
+# deps
+
+\*\*/node_modules
+
+# editor/OS noise
+
+**/\*.log
+**/\*.tmp

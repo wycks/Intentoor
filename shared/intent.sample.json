@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1.0",
+  "emitted_at": "2026-02-11T00:00:00Z",
+  "source": "uniswapx",
+  "network": "ethereum-mainnet",
+  "transport_hint": "zmq:pub",
+  "id": "",
+  "normalized": {
+    "sell_token": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "buy_token": "0xC02aaA39b223FE8D0A0E5C4F27eAD9083C756Cc2",
+    "sell_amount": "1000000",
+    "min_buy_amount": "500000000000000",
+    "deadline_unix": 1765400000,
+    "signature": {}
+  },
+  "raw": {
+    "_note": "Raw venue payload goes here."
+  },
+  "meta": {
+    "poller": "uniswapx/open-orders",
+    "http_status": 200
+  }
+}
